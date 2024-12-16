@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Code</title>
+</head>
+
+<body>
+    <pre id="keywords">
+        all = all
+        hashmap-country = hashmap-country
+        Upper Bound, Lower Bound, and Unbounded Wildcards = ublb
+        HashMap Names = hashmap-name
+        wildcard = wildcard
+        lambda-pytha = lambda-pytha
+        currencylambda = currencylambda
+        fact-lambda = fact-lambda
+        concat-lambda = concat-lambda
+        fahren-lambda = fahren-lambda
+        arraylist1 = arraylist1
+        arraylist2 = arraylist2
+        arraylist3 = arraylist3
+        ll = ll
+        cll = cll
+        matrix = matrix
+    </pre>
+    <pre id="all">
+    <pre id="hashmap-country">
+        package HashMaps;
+
+        import java.util.HashMap;
+        import java.util.Map;
+        import java.util.TreeMap;
+
+        public class Country {
+            public static void main(String[] args) {
+                Map&lt;String, String&gt; countryMap = new HashMap&lt;&gt;();
+
+                countryMap.put("India", "New Delhi");
+                countryMap.put("United States", "Washington");
+                countryMap.put("France", "Paris");
+                countryMap.put("Germany", "Berlin");
+                countryMap.put("Japan", "Tokyo");
+
+                System.out.println("Unsorted Map(HASHMAP): ");
+                for (Map.Entry&lt;String,Strin&gt; entry : countryMap.entrySet()) {
+                    System.out.println("Country: "+entry.getKey() + ", Capital: "+entry.getValue());
+                }
+
+                Map&lt;String,String&gt; sortedCountryMap = new TreeMap&lt;&gt;(countryMap);
+
+                System.out.println("\n Sorted Country Dictionary(TreeMap): ");
+                for (Map.Entry&lt;String,String&gt; entry : sortedCountryMap.entrySet()) {
+                    System.out.println("Country: "+entry.getKey()+", Capital: "+entry.getValue());
+                }
+            }
+        }
+
+    </pre>
+
+    <pre id="hashmap-name">
+        package HashMaps;
+        import java.util.HashMap;
+        import java.util.Map;
+        
+        class HashMapAss {
+            public static void main(String[] args) {
+                Map&lt;nteger, Strin&gt; mapObj1 = new HashMap&lt;&gt;();
+                mapObj1.put(12, "Rakesh Tripathi");
+                mapObj1.put(2, "Mahendra Sharma");
+                mapObj1.put(7, "Balwant Singh");
+                mapObj1.put(49, "Prakash Sareen");
+                mapObj1.put(3, "Naresh Verma");
+                mapObj1.put(12, "Abhishek Shukla");
+                
+                System.out.println("Contents of mapObj1");
+                for(Map.Entry&lt;nteger, Strin&gt; entry: mapObj1.entrySet()){
+                    System.out.println("Key: "+entry.getKey() + " value: "+ entry.getValue());
+                }
+                mapObj1.remove(7);
+                
+                System.out.println("\n Contents of mapObj1 after removing 7:");
+                for(Map.Entry&lt;nteger, Strin&gt; entry: mapObj1.entrySet()){
+                    System.out.println("Key: "+entry.getKey() + " value: "+ entry.getValue());
+                }
+                
+                Map&lt;nteger, Strin&gt; mapObj2 = new HashMap&lt;&gt;(mapObj1);
+                
+                System.out.println("\nContents of mapObj2 (copied from mapObj1):");
+                for (Map.Entry&lt;nteger, Strin&gt; entry : mapObj2.entrySet()) {
+                    System.out.println("Key: " + entry.getKey() + " Value: " + entry.getValue());
+                }
+            }
+        }
+
+    </pre>
+
+    <pre id="ublb">
+        import java.util.ArrayList;
+        import java.util.List;
+
+        public class WildcardDemo {
+
+            // Method to demonstrate Upper Bound Wildcard
+            // Accepts only lists with Number or its subclasses (e.g., Integer, Double)
+            public static void upperBoundWildcard(List&lt;? extends Number&gt; list) {
+                System.out.println("Upper Bound List:");
+                for (Number num : list) {
+                    System.out.println(num);
+                }
+            }
+
+            // Method to demonstrate Lower Bound Wildcard
+            // Accepts only lists with Integer or its superclasses (e.g., Number, Object)
+            public static void lowerBoundWildcard(List&lt;? super Integer&gt; list) {
+                System.out.println("Lower Bound List:");
+                list.add(10); // We can safely add Integer
+                list.add(20); // Adding another Integer
+                for (Object obj : list) {
+                    System.out.println(obj);
+                }
+            }
+
+            // Method to demonstrate Unbounded Wildcard
+            // Accepts a list of any type
+            public static void unboundedWildcard(List&lt;?> list) {
+                System.out.println("Unbounded List:");
+                for (Object obj : list) {
+                    System.out.println(obj);
+                }
+            }
+
+            public static void main(String[] args) {
+                // Upper Bound Wildcard: List of Numbers or their subclasses
+                List<Integer> intList = new ArrayList&lt;&gt;();
+                intList.add(1);
+                intList.add(2);
+                upperBoundWildcard(intList);
+
+                List<Double> doubleList = new ArrayList&lt;&gt;();
+                doubleList.add(3.14);
+                doubleList.add(2.71);
+                upperBoundWildcard(doubleList);
+
+                // Lower Bound Wildcard: List of Integers or their superclasses
+                List<Number> numberList = new ArrayList&lt;&gt;();
+                lowerBoundWildcard(numberList);
+
+                List<Object> objectList = new ArrayList&lt;&gt;();
+                lowerBoundWildcard(objectList);
+
+                // Unbounded Wildcard: List of any type
+                List&lt;String&gt; stringList = new ArrayList();
+                stringList.add("Hello");
+                stringList.add("World");
+                unboundedWildcard(stringList);
+
+                unboundedWildcard(intList); // Can also pass Integer list
+                unboundedWildcard(doubleList); // Can also pass Double list
+            }
+        }
+
+
+    </pre>
+
+    <pre id="wildcard">
+        import java.util.*;
+        public class UpperLowerBound {
+            public static void printNumbers(List &lt;? extends Number&gt; list){
+                for(Number num: list){
+                    System.out.print(num + " ");
+                }
+                System.out.println();
+            }
+
+            public static void addNumbers(List &lt;? super Integer&gt; list){
+                list.add(20);
+                list.add(30);
+
+                System.out.println("List after adding integers : " + list );
+            }
+
+            public static void printAnything(List &lt;?&gt; list){
+                for(Object obj:list){
+                    System.out.print(obj + " ");
+                }
+            }
+            public static void main(String[] args) {
+                //Upper bound example
+                    List&lt;Integer&gt; intList=new ArrayList&lt;&gt;();
+                    intList.add(10);
+                    intList.add(15);
+                    System.out.println("Upper bound : ");
+                    printNumbers(intList);
+
+                    List&lt;Double&gt; doubleList = new ArrayList&lt;&gt;();
+                    doubleList.add(1.1);
+                    doubleList.add(2.2);
+                    printNumbers(doubleList);
+
+                    //lower bound example
+                List&lt;Number&gt; numberList=new ArrayList&lt;&gt;();
+                System.out.println("Lower bound : ");
+                addNumbers(numberList);
+
+                //unbounded example
+                List&lt;Object&gt; objList=new ArrayList&lt;&gt;();
+                System.out.println("Unbounded Example : ");
+                objList.add(10);
+                objList.add('s');
+                objList.add("hello");
+                objList.add(1.3);
+                printAnything(objList);
+            }
+        }
+
+        
+    </pre>
+
+    <pre id="lambda-pytha">
+        package Lambda;
+
+        @FunctionalInterface
+        interface Pythagoras{
+            double calculateHypotenuse(double a, double b);
+        }
+
+        public class PythagorasLambda {
+            public static void main(String[] args) {
+                Pythagoras pytha = (a,b) -> Math.sqrt((a*a) + (b*b));
+                double side1 = 3.0;
+                double side2 = 4.0;
+
+                double hypotenuse = pytha.calculateHypotenuse(side1, side2);
+
+                System.out.println("Side1: "+side1);
+                System.out.println("Side2: "+side2);
+                System.out.println("Hypotenuse: "+ hypotenuse);
+            }
+        }
+
+        package Lambda;
+
+@FunctionalInterface
+interface Pythagoras{
+    double calculateHypotenuse(double a, double b);
+}
+
+public class PythagorasLambda {
+    public static void main(String[] args) {
+        Pythagoras pytha = (a,b) -> Math.sqrt((a*a) + (b*b));
+        double side1 = 3.0;
+        double side2 = 4.0;
+
+        double hypotenuse = pytha.calculateHypotenuse(side1, side2);
+
+        System.out.println("Side1: "+side1);
+        System.out.println("Side2: "+side2);
+        System.out.println("Hypotenuse: "+ hypotenuse);
+    }
+}
+
+        // else calculator ka aaya toh
+
+        // @FunctionalInterface
+        // interface Calculator {
+        //     double operate(double a, double b);
+        // }
+
+        // public class LambdaCalculator {
+        //     public static void main(String[] args) {
+        //         // Lambda for addition
+        //         Calculator add = (a, b) -> a + b;
+
+        //         // Lambda for subtraction
+        //         Calculator subtract = (a, b) -> a - b;
+
+        //         // Lambda for multiplication
+        //         Calculator multiply = (a, b) -> a * b;
+
+        //         // Lambda for division (with a check for divide-by-zero)
+        //         Calculator divide = (a, b) -> {
+        //             if (b == 0) {
+        //                 throw new ArithmeticException("Cannot divide by zero");
+        //             }
+        //             return a / b;
+        //         };
+
+        //         // Example inputs
+        //         double num1 = 10;
+        //         double num2 = 5;
+
+        //         // Perform calculations
+        //         System.out.println("Addition: " + add.operate(num1, num2));
+        //         System.out.println("Subtraction: " + subtract.operate(num1, num2));
+        //         System.out.println("Multiplication: " + multiply.operate(num1, num2));
+        //         System.out.println("Division: " + divide.operate(num1, num2));
+        //     }
+        // }
+
+
+    </pre>
+
+    <pre id="currency-lambda">
+        package Lambda;
+
+        interface CurrencyConverter&lt;T,R&gt;{
+            R convert(T amount);
+        }
+
+        public class CurrencyConversionLambda  {
+            public static void main(String[] args) {
+                CurrencyConverter&lt;Double, Double&gt; usdToInr = (usd) -&gt; usd*82;
+                CurrencyConverter&lt;Double, Double&gt; aedToInr = (aed) -&gt; aed*22.5;
+
+                double usdAmount = 100;
+                double aedAmount = 50;
+
+                double inrFromUsd = usdToInr.convert(usdAmount);
+                double inrFromAed = aedToInr.convert(aedAmount);
+        
+                System.out.println(usdAmount + "USD is equal to "+ inrFromUsd + "INR");
+                System.out.println(aedAmount+ "AED is equal to " + inrFromAed + "INR");
+            }
+        }
+
+
+    </pre>
+
+    <pre id="fact-lambda">
+        package Lambda;
+
+        @FunctionalInterface
+        interface FactorialCalculator {
+            int calculate(int n);
+        }
+
+        public class FactorialWithLambda {
+            public static void main(String[] args) {
+                // Lambda expression to calculate factorial
+                FactorialCalculator factorial = (n) -&gt; {
+                    int result = 1;
+                    for (int i = 1; i lessthaeq n; i++) {
+                        result *= i;
+                    }
+                    return result; // Explicit use of the return keyword
+                };
+
+                // Calculate factorial for the first five natural numbers
+                System.out.println("Factorials of the first five natural numbers:");
+                for (int i = 1; i lessthaneq 5; i++) {
+                    System.out.println("Factorial of " + i + " is: " + factorial.calculate(i));
+                }
+            }
+        }
+
+
+    </pre>
+
+    <pre id="concat-lambda">
+        package Lambda;
+
+        @FunctionalInterface
+        interface StringConcatenator {
+            String concatenate(String str1, String str2);
+        }
+
+        public class LambdaStringConcatenation {
+            public static void main(String[] args) {
+                // Lambda expression to concatenate two strings
+                StringConcatenator concatenator = (str1, str2) -> str1 + str2;
+
+                // Example strings
+                String string1 = "Hello, ";
+                String string2 = "World!";
+
+                // Perform concatenation
+                String result = concatenator.concatenate(string1, string2);
+
+                // Display result
+                System.out.println("Concatenated String: " + result);
+            }
+        }
+
+
+    </pre>
+
+    <pre id="fahren-lambda">
+        @FunctionalInterface
+        interface Converter<T, R> {
+            R convert(T value);
+        }
+
+        public class LambdaConversion {
+            public static void main(String[] args) {
+                // Lambda for Fahrenheit to Celsius conversion: (F - 32) * 5/9
+                Converter&lt;Double, Double&gt; fahrenheitToCelsius = (fahrenheit) -&gt; (fahrenheit - 32) * 5 / 9;
+
+                // Lambda for Kilometers to Meters conversion: KM * 1000
+                Converter&lt;Double, Double&gt; kilometersToMeters = (kilometers) -&gt; kilometers * 1000;
+
+                // Example conversions
+                double fahrenheit = 98.6; // Example: body temperature
+                double kilometers = 5.0; // Example: 5 kilometers
+
+                // Perform conversions
+                double celsius = fahrenheitToCelsius.convert(fahrenheit);
+                double meters = kilometersToMeters.convert(kilometers);
+
+                // Display results
+                System.out.println(fahrenheit + " Fahrenheit is " + celsius + " Celsius.");
+                System.out.println(kilometers + " Kilometers is " + meters + " Meters.");
+            }
+        }
+
+        //vol :
+                @FunctionalInterface
+        interface VolumeCalculator {
+            double calculate(double... dimensions);
+        }
+
+        public class LambdaVolumeCalculator {
+            public static void main(String[] args) {
+                // Lambda to calculate the volume of a sphere
+                VolumeCalculator sphereVolume = (dimensions) -> {
+                    double radius = dimensions[0];
+                    return (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+                };
+
+                // Lambda to calculate the volume of a cone
+                VolumeCalculator coneVolume = (dimensions) -> {
+                    double radius = dimensions[0];
+                    double height = dimensions[1];
+                    return (1.0 / 3.0) * Math.PI * Math.pow(radius, 2) * height;
+                };
+
+                // Lambda to calculate the volume of a cylinder
+                VolumeCalculator cylinderVolume = (dimensions) -> {
+                    double radius = dimensions[0];
+                    double height = dimensions[1];
+                    return Math.PI * Math.pow(radius, 2) * height;
+                };
+
+                // Example inputs
+                double radiusSphere = 3.0;  // Radius of the sphere
+                double radiusCone = 2.0, heightCone = 5.0;  // Radius and height of the cone
+                double radiusCylinder = 2.0, heightCylinder = 7.0;  // Radius and height of the cylinder
+
+                // Calculations
+                System.out.println("Volume of Sphere: " + sphereVolume.calculate(radiusSphere));
+                System.out.println("Volume of Cone: " + coneVolume.calculate(radiusCone, heightCone));
+                System.out.println("Volume of Cylinder: " + cylinderVolume.calculate(radiusCylinder, heightCylinder));
+            }
+        }
+
+
+
+    </pre>
+
+    <pre id="araylist1">
+        
+        import java.util.ArrayList;
+        import java.util.Iterator;
+        import java.util.List;
+        public class Assignment1 {
+        public static void main(String[] args) {
+        List&lt;String&gt; colorList = new ArrayList&lt;&gt;();
+        List&lt;String&gt; removeColorList = new ArrayList&lt;&gt;();
+        String[] colorsArray = {"Violet", "Indigo", "Blue", "Green", "Yellow", "Orange",
+        "Red"};
+        String[] removeColorsArray = {"Blue", "Green", "Orange"};
+        for (String color : colorsArray) {
+        colorList.add(color);
+        }
+        for (String color : removeColorsArray) {
+        removeColorList.add(color);
+        }
+        System.out.println("Original color list:");
+        displayColors(colorList);
+        removeColors(colorList, removeColorList);
+        System.out.println("\nUpdated color list after removal:");
+        displayColors(colorList);
+        }
+        private static void removeColors(List&lt;String&gt; c1, List&lt;String&gt; c2) {
+        Iterator&lt;String&gt; iterator = c1.iterator();
+        while (iterator.hasNext()) {
+        String color = iterator.next();
+        if (c2.contains(color)) {
+        iterator.remove();
+        }
+        }
+        }
+        private static void displayColors(List&lt;String&gt; colors) {
+        for (String color : colors) {
+        System.out.println(color);
+        }
+        }
+        }
+    </pre>
+
+    <pre id="arraylist2">
+        import java.util.ArrayList;
+        import java.util.Iterator;
+        import java.util.List;
+        public class Assignment1 {
+        public static void main(String[] args) {
+        List&lt;String&gt; colorList = new ArrayList&lt;&gt;();
+        List&lt;String&gt; removeColorList = new ArrayList&lt;&gt;();
+        String[] colorsArray = {"Violet", "Indigo", "Blue", "Green", "Yellow", "Orange",
+        "Red"};
+        String[] removeColorsArray = {"Blue", "Green", "Orange"};
+        for (String color : colorsArray) {
+        colorList.add(color);
+        }
+        for (String color : removeColorsArray) {
+        removeColorList.add(color);
+        }
+        System.out.println("Original color list:");
+        displayColors(colorList);
+        removeColors(colorList, removeColorList);
+        System.out.println("\nUpdated color list after removal:");
+        displayColors(colorList);
+        }
+        private static void removeColors(List&lt;String&gt; c1, List&lt;String&gt; c2) {
+        Iterator&lt;String&gt; iterator = c1.iterator();
+        while (iterator.hasNext()) {
+        String color = iterator.next();
+        if (c2.contains(color)) {
+        iterator.remove();
+        }
+        }
+        }
+        private static void displayColors(List&lt;String&gt; colors) {
+        for (String color : colors) {
+        System.out.println(color);
+        }
+        }
+        }
+
+
+    </pre>
+
+    <pre id="arraylist3">
+        import java.util.ArrayList;
+        public class Assignment1 {
+        public static void main(String[] args) {
+        ArrayList&lt;Integer&gt; numbers = new ArrayList&lt;&gt;();
+        for (int i = 1; i lessthaneq 20; i++) {
+        numbers.add(i);
+        }
+        System.out.println("The 10 elements from 1 to 20:");
+        int count = 0;
+        for (int number : numbers) {
+        if (count &lt; 10) {
+        System.out.print(number + " ");
+        count++;
+        }
+        }
+        System.out.println();
+        System.out.println("Only even numbers:");
+        for (int number : numbers) {
+        if (number % 2 == 0) {
+        System.out.print(number + " ");
+        }
+        }
+        System.out.println();
+        System.out.println("Only numbers which are perfect squares:");
+        for (int number : numbers) {
+        if (isPerfectSquare(number)) {
+        System.out.print(number + " ");
+        }
+        }
+        System.out.println();
+        }
+        private static boolean isPerfectSquare(int num) {
+        int sqrt = (int) Math.sqrt(num);return (sqrt * sqrt == num);}}
+        
+    </pre>
+
+    <pre id="ll">
+        import java.util.LinkedList;
+        class Train {
+        private LinkedList&lt;String&gt; coaches;
+        public Train() {
+        coaches = new LinkedList&lt;&gt;();
+        }
+        public void addCoach(String coach) {
+        coaches.add(coach);
+    }
+    public void removeCoach(String coach) {
+    coaches.remove(coach);
+    }
+    public void insertCoach(int index, String coach) {
+    coaches.add(index, coach);
+    }
+    public boolean containsCoach(String coach) {
+    return coaches.contains(coach);
+    }
+    public int size() {
+    return coaches.size();
+    }
+    public void replaceCoach(String oldCoach, String newCoach) {
+    int index = coaches.indexOf(oldCoach);
+    if (index != -1) {
+    coaches.set(index, newCoach);
+    }
+    }
+    public void displayTrain() {
+    System.out.println("Train coaches: " + coaches);
+    }
+    }
+    public class Assignment1 {
+    public static void main(String[] args) {
+    Train train = new Train();
+    train.addCoach("Locomotive");
+    train.addCoach("A1");
+    train.addCoach("A2");
+    for (int i = 3; i lessthaneq 6; i++) {
+    train.addCoach("A" + i);
+    }
+    for (int i = 1; i lessthaneq 5; i++) {
+    train.addCoach("B" + i);
+    }
+    for (int i = 1; i lessthaneq 7; i++) {
+    train.addCoach("S" + i);
+    }
+    train.displayTrain();
+    train.removeCoach("A2");
+    train.removeCoach("A5");
+    train.removeCoach("B4");
+    train.removeCoach("B6");
+    train.displayTrain();
+    train.insertCoach(12, "S8");
+    train.addCoach("S9");
+    train.displayTrain();
+    boolean containsB4 = train.containsCoach("B4");
+    boolean containsS2 = train.containsCoach("S2");
+    if (containsB4 && containsS2) {
+    System.out.println("Train contains the coach B4 and S2");
+    } else {
+    System.out.println("Train does not contain the coach B4 and S2");
+    }
+    System.out.println("Size of the Train: " + train.size());
+    train.replaceCoach("A6", "B6");
+    train.replaceCoach("S7", "S13");
+    train.displayTrain();
+    }
+    }
+
+    </pre>
+
+    <pre id="jsp">
+       index.jsp:
+       &lt;%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+    &lt;%@ page import="java.sql.*" %&gt;	
+    <@ include file="header.jsp" %>
+        
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title> 
+    </head>
+    <body>
+        <form method="get">
+            <label>Enter First Name:</label>
+            <input type="text" name="fname"> fname
+            <label>Enter Last Name:</label>
+            <input type="text" name="lname"> lname
+            <label>Roll No:</label>
+            <input type="number" name="rollno"> rollno
+            <input type="submit">
+        </form>
+        
+        &lt;%
+            String fname = request.getParameter("fname");
+            String lname = request.getParameter("lname");
+            String rollnoString = request.getParameter("rollno");
+            if(fname!=null && lname!= null && rollnoString != null){
+                int rollno = Integer.parseInt(rollnoString);
+                try{
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/eventdb", "root", " ");
+                    PreparedStatement ps = con.prepareStatement("insert into stud_details (fname, lname, rollno) values(?, ?, ?);");
+                    ps.setString(1, fname);
+                    ps.setString(2, lname);
+                    ps.setInt(3, rollno);
+                    int res = ps.executeUpdate();
+                    if(res > 0){
+                        request.setAttribute("fname", fname);
+                        request.setAttribute("lname", lname);
+                        request.setAttribute("rollno", rollno);
+                        RequestDispatcher rd = request.getRequestDispatcher("second.jsp");
+                        rd.forward(request,response);
+                    }else{
+                        out.println("Data failed to insert");
+                    }
+                }catch(Exception e){
+                    out.println(e);
+                }
+                
+            }
+        %&gt;
+    </body>
+    </html>
+    &lt;%@ include file="footer.jsp" %&gt;
+
+
+    second . jsp:
+    <%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="header.jsp" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	First Name: ${fname} 
+	Last Name: ${lname}
+	Roll no: ${rollno} 
+	 Data inserted success
+	a href="/dbcrud/third.jsp">Click here 
+	
+</body>
+</html>
+
+&lt;%@include file="footer.jsp" %&gt;
+
+
+    </pre>
+
+    
+    </pre>
+</body>
+
+</html>
